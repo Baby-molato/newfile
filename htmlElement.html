@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="myParagraph">Hello, World!</p>
+
+    <button id="myButton">Click Me</button>
+
+    <div id="list">
+        <h2>My Resumption List</h2>
+
+    </div>
+    <button id="show">Show List</button>
+    <script>
+        const list = ['bag','shoe', 'book', 'Pencil'];
+        const div = document.getElementById('list');
+        const p = document.getElementById('myParagraph');
+        const button = document.getElementById('myButton');
+        const showbutton = document.getElementById('show');
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        div.appendChild(input);
+
+        const addbnt = document.createElement('button');
+        addbnt.innerHTML = 'Add to List';
+        div.appendChild(addbnt);
+        
+        const removebnt = document.createElement('button');
+        removebnt.innerHTML = 'Remove';
+        div.appendChild( removebnt);
+        
+        const ul = document.createElement('ul');
+        div.appendChild(ul);
+        ul.style.display = 'none';
+        for(let i = 0; i < list.length; i++){
+            const li = document.createElement('li');
+            li.id = list[i];
+            li.textContent = list[i];
+            ul.appendChild(li);
+        }
+
+        button.addEventListener('click', function(){
+             p.innerHTML = 'Hi, Welcome';
+             alert('Change Successfully');
+             prompt('Enter your name');
+        })
+
+        showbutton.addEventListener('click', function(){
+            if( ul.style.display === 'none'){
+                 ul.style.display = 'block';
+                 showbutton.innerHTML = 'Hide List'
+            }else {
+                 ul.style.display = 'none';
+                 showbutton.innerHTML = 'Show List'
+            }
+           
+        })
+
+
+        addbnt.addEventListener('click', function(){
+            //  list.push(input.value);
+            if(input.value == ''){
+                alert('Invalid Item');
+            } else {
+                const li = document.createElement('li');
+                li.id = input.value;
+                li.textContent = input.value;
+                ul.appendChild(li);
+                alert('Item added to the list');
+            }
+        });
+        
+
+         removebnt.addEventListener('click', function(){
+            if(input.value == ''){
+                alert('Enter item to delete');
+            }else {
+                 document.getElementById(input.value).remove();
+            }
+        })
+         
+    </script>
+</body>
+</html>
